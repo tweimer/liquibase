@@ -408,7 +408,7 @@ public class StringUtil {
 
     }
 
-    public static String join(Collection collection, String delimiter, StringUtilFormatter formatter) {
+    public static String join(Collection<?> collection, String delimiter, StringUtilFormatter formatter) {
         if (collection == null) {
             return null;
         }
@@ -426,7 +426,7 @@ public class StringUtil {
         return returnString.substring(0, returnString.length() - delimiter.length());
     }
 
-    public static String join(Collection collection, String delimiter, StringUtilFormatter formatter, boolean sorted) {
+    public static String join(Collection<?> collection, String delimiter, StringUtilFormatter formatter, boolean sorted) {
         if (sorted) {
             TreeSet<String> sortedSet = new TreeSet<>();
             for (Object obj : collection) {
@@ -445,11 +445,11 @@ public class StringUtil {
         }
     }
 
-    public static String join(Map map, String delimiter) {
+    public static String join(Map<?, ?> map, String delimiter) {
         return join(map, delimiter, new ToStringFormatter());
     }
 
-    public static String join(Map map, String delimiter, StringUtilFormatter formatter) {
+    public static String join(Map<?, ?> map, String delimiter, StringUtilFormatter formatter) {
         List<String> list = new ArrayList<>();
         for (Map.Entry entry : (Set<Map.Entry>) map.entrySet()) {
             list.add(entry.getKey().toString() + "=" + formatter.toString(entry.getValue()));
@@ -886,7 +886,7 @@ public class StringUtil {
                 if (((Collection<?>) obj).size() == 0) {
                     return null;
                 } else {
-                    return "[" + StringUtil.join((Collection) obj, ", ", this) + "]";
+                    return "[" + StringUtil.join((Collection<?>) obj, ", ", this) + "]";
                 }
 
             }
